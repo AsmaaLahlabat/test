@@ -3,7 +3,6 @@ package health.com;
 import java.util.List;
 import java.util.ArrayList;
 
-
 public class Login {
     private static final List<User> users = new ArrayList<>();
 
@@ -24,5 +23,4 @@ public class Login {
         System.out.println("\nRegistered Users:");
         users.forEach(user -> System.out.println("Username: " + user.getUsername()));
     }
-
 }

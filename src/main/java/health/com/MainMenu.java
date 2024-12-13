@@ -9,14 +9,20 @@ public class MainMenu {
 
         while (true) {
             System.out.println("\n==== Main Menu ====");
-            System.out.println("1. Login Feature");
+            System.out.println("1. Login");
             System.out.println("2. Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline character
 
             switch (choice) {
-                case 1 -> loginFeature(scanner);
+                case 1 -> {
+                    if (loginFeature(scanner)) {
+                        programMonitoringFeature(scanner); // Redirect to program monitoring if login succeeds
+                    } else {
+                        System.out.println("Login Failed! Please try again.");
+                    }
+                }
                 case 2 -> {
                     System.out.println("Exiting... Goodbye!");
                     return;
@@ -26,17 +32,87 @@ public class MainMenu {
         }
     }
 
-    private static void loginFeature(Scanner scanner) {
-        System.out.println("\n==== Login Feature ====");
-        System.out.print("Enter Username: ");
+    private static boolean loginFeature(Scanner scanner) {
+        System.out.print("\nEnter Username: ");
         String username = scanner.nextLine();
         System.out.print("Enter Password: ");
         String password = scanner.nextLine();
 
         if (Login.login(username, password)) {
             System.out.println("Login Successful! Welcome, " + username + "!");
+            return true;
         } else {
             System.out.println("Login Failed! Invalid credentials.");
+            return false;
+        }
+    }
+
+    private static void programMonitoringFeature(Scanner scanner) {
+        while (true) {
+            System.out.println("\n==== Program Monitoring ====");
+            System.out.println("1. View All Programs");
+            System.out.println("2. View Most Popular Program");
+            System.out.println("3. Add New Program");
+            System.out.println("4. Delete a Program");
+            System.out.println("5. Update a Program");
+            System.out.println("6. Logout");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1 -> {
+                    System.out.println("\nAll Available Programs:");
+                    ProgramMonitoring.listPrograms();
+                }
+                case 2 -> {
+                    Program popular = ProgramMonitoring.getMostPopularProgram();
+                    if (popular != null) {
+                        System.out.println("\nMost Popular Program: " + popular.getTitle() +
+                                " with " + popular.getEnrollments() + " enrollments.");
+                    } else {
+                        System.out.println("No programs available.");
+                    }
+                }
+                case 3 -> {
+                    System.out.print("Enter Program Title: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter Enrollments: ");
+                    int enrollments = scanner.nextInt();
+                    System.out.print("Enter Attendance: ");
+                    int attendance = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline character
+                    ProgramMonitoring.addProgram(title, enrollments, attendance);
+                }
+                case 4 -> {
+                    System.out.print("Enter the title of the program to delete: ");
+                    String title = scanner.nextLine();
+                    if (ProgramMonitoring.deleteProgram(title)) {
+                        System.out.println("Program deleted successfully!");
+                    } else {
+                        System.out.println("Program not found.");
+                    }
+                }
+                case 5 -> {
+                    System.out.print("Enter the title of the program to update: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter new Enrollments: ");
+                    int enrollments = scanner.nextInt();
+                    System.out.print("Enter new Attendance: ");
+                    int attendance = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline character
+                    if (ProgramMonitoring.updateProgram(title, enrollments, attendance)) {
+                        System.out.println("Program updated successfully!");
+                    } else {
+                        System.out.println("Program not found.");
+                    }
+                }
+                case 6 -> {
+                    System.out.println("Logging out... Returning to Main Menu.");
+                    return; // Return to the main menu
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
         }
     }
 }
