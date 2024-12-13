@@ -1,33 +1,28 @@
 package health.com;
 
+import java.util.List;
 import java.util.ArrayList;
 
+
 public class Login {
-    public static ArrayList <User> users=new ArrayList<User>();
+    private static final List<User> users = new ArrayList<>();
 
-
-    public Login(){
-        User osama = new User();
-        osama.name="admin";
-        osama.password="admin123";
-        users.add(osama);
+    static {
+        users.add(new User("admin", "admin123"));
     }
 
-
-    public boolean isValid(String name){
-        for (int i=0;i<users.size();i++){
-            System.out.println(Login.users.get(i).name);
-            if(users.get(i).name.equals(name)){
-                return true;
-            }
-        }
-        return false ;
+    public static boolean login(String username, String password) {
+        return users.stream().anyMatch(user -> user.getUsername().equals(username) && user.getPassword().equals(password));
     }
 
-
-    @Override
-    public int hashCode() {
-        int y=0;
-        return 9;
+    public static void addUser(String username, String password) {
+        users.add(new User(username, password));
+        System.out.println("User added successfully: " + username);
     }
+
+    public static void listUsers() {
+        System.out.println("\nRegistered Users:");
+        users.forEach(user -> System.out.println("Username: " + user.getUsername()));
+    }
+
 }

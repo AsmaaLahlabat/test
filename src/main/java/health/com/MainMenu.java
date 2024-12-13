@@ -3,21 +3,21 @@ package health.com;
 import java.util.Scanner;
 
 public class MainMenu {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-//efjoejfwldmvl;vne;knve;v;envr;k
+
         while (true) {
             System.out.println("\n==== Main Menu ====");
-            System.out.println("1. Run Login Feature Tests");
-            System.out.println("2. Run Program Monitoring Tests");
-            System.out.println("3. Exit");
+            System.out.println("1. Login Feature");
+            System.out.println("2. Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
 
             switch (choice) {
-                case 1 -> runFeature("cases/feature1.feature");
-                case 2 -> runFeature("cases/feature2.feature");
-                case 3 -> {
+                case 1 -> loginFeature(scanner);
+                case 2 -> {
                     System.out.println("Exiting... Goodbye!");
                     return;
                 }
@@ -26,12 +26,17 @@ public class MainMenu {
         }
     }
 
-    private static void runFeature(String featurePath) {
-        String[] cucumberOptions = new String[]{
-                "--glue", "health.com.AcceptanceTest",
-                "--plugin", "pretty",
-                featurePath
-        };
-        io.cucumber.core.cli.Main.main(cucumberOptions); // تعديل استدعاء Main
+    private static void loginFeature(Scanner scanner) {
+        System.out.println("\n==== Login Feature ====");
+        System.out.print("Enter Username: ");
+        String username = scanner.nextLine();
+        System.out.print("Enter Password: ");
+        String password = scanner.nextLine();
+
+        if (Login.login(username, password)) {
+            System.out.println("Login Successful! Welcome, " + username + "!");
+        } else {
+            System.out.println("Login Failed! Invalid credentials.");
+        }
     }
 }

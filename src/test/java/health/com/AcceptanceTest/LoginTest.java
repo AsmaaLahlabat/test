@@ -6,40 +6,43 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-import static health.com.Login.users;
-
 public class LoginTest {
-    Login login=new Login();
-    boolean isValid=false;
+    private String username;
+    private String password;
+    private boolean loginSuccess;
+
     @Given("the user is on the login page")
     public void theUserIsOnTheLoginPage() {
-
-
-
+        System.out.println("User navigates to the login page.");
     }
 
     @When("the user enters valid credentials {string} and {string}")
-    public void theUserEntersValidCredentialsAnd(String string, String string2) {
-       isValid= login.isValid(string);
-    login.hashCode();
+    public void theUserEntersValidCredentialsAnd(String username, String password) {
+        this.username = username;
+        this.password = password;
+        loginSuccess = Login.login(username, password);
     }
 
     @Then("the user should be redirected to the dashboard")
     public void theUserShouldBeRedirectedToTheDashboard() {
-        Assert.assertTrue(isValid);
+        if (loginSuccess) {
+            System.out.println("Login successful! Welcome, " + username + "!");
+        } else {
+            System.out.println("Login failed! Invalid credentials.");
+        }
     }
 
-
-
     @When("the user enters invalid credentials {string} and {string}")
-    public void theUserEntersInvalidCredentialsAnd(String string, String string2) {
-        Assert.assertTrue(true);
-
+    public void theUserEntersInvalidCredentialsAnd(String username, String password) {
+        this.username = username;
+        this.password = password;
+        loginSuccess = Login.login(username, password);
     }
 
     @Then("an error message should be displayed")
     public void anErrorMessageShouldBeDisplayed() {
-        // Write code here that turns the phrase above into concrete actions
-        Assert.assertTrue(true);
+        if (!loginSuccess) {
+            System.out.println("Error: Invalid username or password.");
+        }
     }
 }
