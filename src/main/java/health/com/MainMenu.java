@@ -17,8 +17,9 @@ public class MainMenu {
 
             switch (choice) {
                 case 1 -> {
-                    if (loginFeature(scanner)) {
-                        postLoginMenu(scanner); // Show post-login menu if login succeeds
+                    User loggedInUser = loginFeature(scanner);
+                    if (loggedInUser != null) {
+                        postLoginMenu(scanner, loggedInUser);
                     } else {
                         System.out.println("Login Failed! Please try again.");
                     }
@@ -32,36 +33,89 @@ public class MainMenu {
         }
     }
 
-    private static boolean loginFeature(Scanner scanner) {
+    private static User loginFeature(Scanner scanner) {
         System.out.print("\nEnter Username: ");
         String username = scanner.nextLine();
         System.out.print("Enter Password: ");
         String password = scanner.nextLine();
 
-        if (Login.login(username, password)) {
-            System.out.println("Login Successful! Welcome, " + username + "!");
-            return true;
+        User user = Login.login(username, password);
+        if (user != null) {
+            System.out.println("Login Successful! Welcome, " + user.getUsername() + " (" + user.getRole() + ")");
         } else {
             System.out.println("Login Failed! Invalid credentials.");
-            return false;
+        }
+        return user;
+    }
+
+    private static void postLoginMenu(Scanner scanner, User user) {
+        switch (user.getRole()) {
+            case "Admin" -> adminMenu(scanner);
+            case "Instructor" -> instructorMenu(scanner);
+            case "Client" -> clientMenu(scanner);
+            default -> System.out.println("Invalid role detected!");
         }
     }
 
-    private static void postLoginMenu(Scanner scanner) {
+    private static void adminMenu(Scanner scanner) {
         while (true) {
-            System.out.println("\n==== Post Login Menu ====");
+            System.out.println("\n==== Admin Menu ====");
             System.out.println("1. Program Monitoring");
             System.out.println("2. Content Management");
             System.out.println("3. Logout");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline character
+            scanner.nextLine();
 
             switch (choice) {
                 case 1 -> programMonitoringFeature(scanner);
                 case 2 -> contentManagementFeature(scanner);
                 case 3 -> {
-                    System.out.println("Logging out... Returning to Main Menu.");
+                    System.out.println("Logging out...");
+                    return;
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private static void instructorMenu(Scanner scanner) {
+        while (true) {
+            System.out.println("\n==== Instructor Menu ====");
+            System.out.println("1. View Assigned Programs");
+            System.out.println("2. Manage Content");
+            System.out.println("3. Logout");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1 -> System.out.println("Viewing assigned programs...");
+                case 2 -> System.out.println("Managing content...");
+                case 3 -> {
+                    System.out.println("Logging out...");
+                    return;
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private static void clientMenu(Scanner scanner) {
+        while (true) {
+            System.out.println("\n==== Client Menu ====");
+            System.out.println("1. View Subscriptions");
+            System.out.println("2. Enroll in a Program");
+            System.out.println("3. Logout");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1 -> System.out.println("Viewing subscriptions...");
+                case 2 -> System.out.println("Enrolling in a program...");
+                case 3 -> {
+                    System.out.println("Logging out...");
                     return;
                 }
                 default -> System.out.println("Invalid choice. Please try again.");
@@ -77,7 +131,7 @@ public class MainMenu {
             System.out.println("3. Add New Program");
             System.out.println("4. Delete a Program");
             System.out.println("5. Update a Program");
-            System.out.println("6. Back to Post Login Menu");
+            System.out.println("6. Back to Admin Menu");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline character
@@ -127,7 +181,7 @@ public class MainMenu {
                     }
                 }
                 case 6 -> {
-                    System.out.println("Returning to Post Login Menu...");
+                    System.out.println("Returning to Admin Menu...");
                     return;
                 }
                 default -> System.out.println("Invalid choice. Please try again.");
@@ -143,7 +197,7 @@ public class MainMenu {
             System.out.println("3. Reject an Article");
             System.out.println("4. View Complaints");
             System.out.println("5. Resolve a Complaint");
-            System.out.println("6. Back to Post Login Menu");
+            System.out.println("6. Back to Admin Menu");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline character
@@ -179,7 +233,7 @@ public class MainMenu {
                     }
                 }
                 case 6 -> {
-                    System.out.println("Returning to Post Login Menu...");
+                    System.out.println("Returning to Admin Menu...");
                     return;
                 }
                 default -> System.out.println("Invalid choice. Please try again.");

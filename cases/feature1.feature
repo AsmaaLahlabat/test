@@ -9,8 +9,8 @@ Feature: User Login
     When the user enters invalid credentials "<username>" and "<password>"
     Then an error message should be displayed
     Examples:
-      | username |password|
-      |          | 8374   |
-      | asmaa    | 234    |
-      |          |        |
-      | asmaa    |        |
+      | username | password |
+      |          | 8374     |
+      | asmaa    | 234      |
+      |          |          |
+      | asmaa    |          |

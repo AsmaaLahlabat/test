@@ -1,15 +1,15 @@
 package health.com.AcceptanceTest;
 
 import health.com.Login;
+import health.com.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 
 public class LoginTest {
     private String username;
     private String password;
-    private boolean loginSuccess;
+    private User loggedInUser;
 
     @Given("the user is on the login page")
     public void theUserIsOnTheLoginPage() {
@@ -20,13 +20,13 @@ public class LoginTest {
     public void theUserEntersValidCredentialsAnd(String username, String password) {
         this.username = username;
         this.password = password;
-        loginSuccess = Login.login(username, password);
+        loggedInUser = Login.login(username, password);
     }
 
     @Then("the user should be redirected to the dashboard")
     public void theUserShouldBeRedirectedToTheDashboard() {
-        if (loginSuccess) {
-            System.out.println("Login successful! Welcome, " + username + "!");
+        if (loggedInUser != null) {
+            System.out.println("Login successful! Welcome, " + loggedInUser.getUsername() + " (" + loggedInUser.getRole() + ")");
         } else {
             System.out.println("Login failed! Invalid credentials.");
         }
@@ -36,12 +36,12 @@ public class LoginTest {
     public void theUserEntersInvalidCredentialsAnd(String username, String password) {
         this.username = username;
         this.password = password;
-        loginSuccess = Login.login(username, password);
+        loggedInUser = Login.login(username, password);
     }
 
     @Then("an error message should be displayed")
     public void anErrorMessageShouldBeDisplayed() {
-        if (!loginSuccess) {
+        if (loggedInUser == null) {
             System.out.println("Error: Invalid username or password.");
         }
     }
