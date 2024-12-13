@@ -18,7 +18,7 @@ public class MainMenu {
             switch (choice) {
                 case 1 -> {
                     if (loginFeature(scanner)) {
-                        programMonitoringFeature(scanner); // Redirect to program monitoring if login succeeds
+                        postLoginMenu(scanner); // Show post-login menu if login succeeds
                     } else {
                         System.out.println("Login Failed! Please try again.");
                     }
@@ -47,6 +47,28 @@ public class MainMenu {
         }
     }
 
+    private static void postLoginMenu(Scanner scanner) {
+        while (true) {
+            System.out.println("\n==== Post Login Menu ====");
+            System.out.println("1. Program Monitoring");
+            System.out.println("2. Content Management");
+            System.out.println("3. Logout");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1 -> programMonitoringFeature(scanner);
+                case 2 -> contentManagementFeature(scanner);
+                case 3 -> {
+                    System.out.println("Logging out... Returning to Main Menu.");
+                    return;
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
     private static void programMonitoringFeature(Scanner scanner) {
         while (true) {
             System.out.println("\n==== Program Monitoring ====");
@@ -55,16 +77,13 @@ public class MainMenu {
             System.out.println("3. Add New Program");
             System.out.println("4. Delete a Program");
             System.out.println("5. Update a Program");
-            System.out.println("6. Logout");
+            System.out.println("6. Back to Post Login Menu");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline character
 
             switch (choice) {
-                case 1 -> {
-                    System.out.println("\nAll Available Programs:");
-                    ProgramMonitoring.listPrograms();
-                }
+                case 1 -> ProgramMonitoring.listPrograms();
                 case 2 -> {
                     Program popular = ProgramMonitoring.getMostPopularProgram();
                     if (popular != null) {
@@ -108,8 +127,60 @@ public class MainMenu {
                     }
                 }
                 case 6 -> {
-                    System.out.println("Logging out... Returning to Main Menu.");
-                    return; // Return to the main menu
+                    System.out.println("Returning to Post Login Menu...");
+                    return;
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private static void contentManagementFeature(Scanner scanner) {
+        while (true) {
+            System.out.println("\n==== Content Management ====");
+            System.out.println("1. View Pending Articles");
+            System.out.println("2. Approve an Article");
+            System.out.println("3. Reject an Article");
+            System.out.println("4. View Complaints");
+            System.out.println("5. Resolve a Complaint");
+            System.out.println("6. Back to Post Login Menu");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1 -> ContentManagement.listPendingArticles();
+                case 2 -> {
+                    System.out.print("Enter Article Title to Approve: ");
+                    String title = scanner.nextLine();
+                    if (ContentManagement.approveArticle(title)) {
+                        System.out.println("Article approved successfully!");
+                    } else {
+                        System.out.println("Article not found.");
+                    }
+                }
+                case 3 -> {
+                    System.out.print("Enter Article Title to Reject: ");
+                    String title = scanner.nextLine();
+                    if (ContentManagement.rejectArticle(title)) {
+                        System.out.println("Article rejected successfully!");
+                    } else {
+                        System.out.println("Article not found.");
+                    }
+                }
+                case 4 -> ContentManagement.listComplaints();
+                case 5 -> {
+                    System.out.print("Enter Complaint Title to Resolve: ");
+                    String title = scanner.nextLine();
+                    if (ContentManagement.resolveComplaint(title)) {
+                        System.out.println("Complaint resolved successfully!");
+                    } else {
+                        System.out.println("Complaint not found.");
+                    }
+                }
+                case 6 -> {
+                    System.out.println("Returning to Post Login Menu...");
+                    return;
                 }
                 default -> System.out.println("Invalid choice. Please try again.");
             }
