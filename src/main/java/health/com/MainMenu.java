@@ -86,11 +86,36 @@ public class MainMenu {
     private static void instructorMenu(Scanner scanner) {
         while (true) {
             System.out.println("\n==== Instructor Menu ====");
+            System.out.println("1. Program Management");
+            System.out.println("2. Client Interaction");
+            System.out.println("3. Progress Tracking");
+            System.out.println("4. Notifications and Updates");
+            System.out.println("5. Logout");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1 -> programManagementFeature(scanner);
+                case 2 -> clientInteractionFeature(scanner);
+                case 3 -> progressTrackingFeature(scanner);
+                case 4 -> notificationsAndUpdatesFeature(scanner);
+                case 5 -> {
+                    System.out.println("Logging out...");
+                    return;
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+    private static void programManagementFeature(Scanner scanner) {
+        while (true) {
+            System.out.println("\n==== Program Management ====");
             System.out.println("1. View All Programs");
             System.out.println("2. Add New Program");
             System.out.println("3. Update Program");
             System.out.println("4. Delete Program");
-            System.out.println("5. Logout");
+            System.out.println("5. Back to Instructor Menu");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -109,7 +134,7 @@ public class MainMenu {
                     System.out.print("Enter Price: ");
                     int price = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.print("Enter Materials (e.g., Videos, Images): ");
+                    System.out.print("Enter Materials: ");
                     String materials = scanner.nextLine();
                     InstructorManagement.addProgram(title, duration, level, goals, price, materials);
                 }
@@ -135,13 +160,110 @@ public class MainMenu {
                     InstructorManagement.deleteProgram(title);
                 }
                 case 5 -> {
-                    System.out.println("Logging out...");
+                    System.out.println("Returning to Instructor Menu...");
                     return;
                 }
                 default -> System.out.println("Invalid choice. Please try again.");
             }
         }
     }
+    private static void clientInteractionFeature(Scanner scanner) {
+        while (true) {
+            System.out.println("\n==== Client Interaction ====");
+            System.out.println("1. Send Message to Client");
+            System.out.println("2. Provide Progress Report");
+            System.out.println("3. View All Messages");
+            System.out.println("4. View All Progress Reports");
+            System.out.println("5. Back to Instructor Menu");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1 -> {
+                    System.out.print("Enter Client Name: ");
+                    String clientName = scanner.nextLine();
+                    System.out.print("Enter Message: ");
+                    String message = scanner.nextLine();
+                    ClientInteraction.sendMessage(clientName, message);
+                }
+                case 2 -> {
+                    System.out.print("Enter Client Name: ");
+                    String clientName = scanner.nextLine();
+                    System.out.print("Enter Progress Report: ");
+                    String report = scanner.nextLine();
+                    ClientInteraction.provideProgressReport(clientName, report);
+                }
+                case 3 -> ClientInteraction.listClientMessages();
+                case 4 -> ClientInteraction.listProgressReports();
+                case 5 -> {
+                    System.out.println("Returning to Instructor Menu...");
+                    return;
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+    private static void progressTrackingFeature(Scanner scanner) {
+        while (true) {
+            System.out.println("\n==== Progress Tracking ====");
+            System.out.println("1. Monitor Client Progress");
+            System.out.println("2. Send Motivational Reminder");
+            System.out.println("3. Back to Instructor Menu");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1 -> ClientInteraction.listProgressReports();
+                case 2 -> {
+                    System.out.print("Enter Client Name: ");
+                    String clientName = scanner.nextLine();
+                    System.out.print("Enter Reminder Message: ");
+                    String reminder = scanner.nextLine();
+                    ClientInteraction.sendMessage(clientName, reminder);
+                    System.out.println("Reminder sent successfully.");
+                }
+                case 3 -> {
+                    System.out.println("Returning to Instructor Menu...");
+                    return;
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+    private static void notificationsAndUpdatesFeature(Scanner scanner) {
+        while (true) {
+            System.out.println("\n==== Notifications and Updates ====");
+            System.out.println("1. Notify Clients About Schedule Changes");
+            System.out.println("2. Announce New Programs or Offers");
+            System.out.println("3. Back to Instructor Menu");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1 -> {
+                    System.out.print("Enter Notification Message: ");
+                    String notification = scanner.nextLine();
+                    ClientInteraction.sendMessage("ALL_CLIENTS", notification);
+                    System.out.println("Notification sent to all clients.");
+                }
+                case 2 -> {
+                    System.out.print("Enter Announcement Message: ");
+                    String announcement = scanner.nextLine();
+                    ClientInteraction.sendMessage("ALL_CLIENTS", announcement);
+                    System.out.println("Announcement sent successfully.");
+                }
+                case 3 -> {
+                    System.out.println("Returning to Instructor Menu...");
+                    return;
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
 
 
     private static void clientMenu(Scanner scanner) {
@@ -392,4 +514,5 @@ public class MainMenu {
             }
         }
     }
+
 }
