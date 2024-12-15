@@ -23,12 +23,30 @@ public class LoginTest {
         loggedInUser = Login.login(username, password);
     }
 
-    @Then("the user should be redirected to the dashboard")
-    public void theUserShouldBeRedirectedToTheDashboard() {
-        if (loggedInUser != null) {
-            System.out.println("Login successful! Welcome, " + loggedInUser.getUsername() + " (" + loggedInUser.getRole() + ")");
+    @Then("the user should be redirected to the admin dashboard")
+    public void theUserShouldBeRedirectedToTheAdminDashboard() {
+        if (loggedInUser != null && loggedInUser.getRole().equals("Admin")) {
+            System.out.println("Redirected to Admin Dashboard.");
         } else {
-            System.out.println("Login failed! Invalid credentials.");
+            System.out.println("Failed to redirect to Admin Dashboard.");
+        }
+    }
+
+    @Then("the user should be redirected to the instructor dashboard")
+    public void theUserShouldBeRedirectedToTheInstructorDashboard() {
+        if (loggedInUser != null && loggedInUser.getRole().equals("Instructor")) {
+            System.out.println("Redirected to Instructor Dashboard.");
+        } else {
+            System.out.println("Failed to redirect to Instructor Dashboard.");
+        }
+    }
+
+    @Then("the user should be redirected to the client dashboard")
+    public void theUserShouldBeRedirectedToTheClientDashboard() {
+        if (loggedInUser != null && loggedInUser.getRole().equals("Client")) {
+            System.out.println("Redirected to Client Dashboard.");
+        } else {
+            System.out.println("Failed to redirect to Client Dashboard.");
         }
     }
 

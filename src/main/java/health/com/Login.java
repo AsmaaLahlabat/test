@@ -30,4 +30,10 @@ public class Login {
         System.out.println("\nRegistered Users:");
         users.forEach(user -> System.out.println("Username: " + user.getUsername() + ", Role: " + user.getRole()));
     }
+
+    public static void addUser(String username, String password, String role) {
+        users.add(new User(username, password, role, true));
+        System.out.println("User added to Login system: " + username);
+    }
+
 }

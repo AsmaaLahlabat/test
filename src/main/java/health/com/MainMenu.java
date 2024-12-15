@@ -86,17 +86,55 @@ public class MainMenu {
     private static void instructorMenu(Scanner scanner) {
         while (true) {
             System.out.println("\n==== Instructor Menu ====");
-            System.out.println("1. View Assigned Programs");
-            System.out.println("2. Manage Content");
-            System.out.println("3. Logout");
+            System.out.println("1. View All Programs");
+            System.out.println("2. Add New Program");
+            System.out.println("3. Update Program");
+            System.out.println("4. Delete Program");
+            System.out.println("5. Logout");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
-                case 1 -> System.out.println("Viewing assigned programs...");
-                case 2 -> System.out.println("Managing content...");
+                case 1 -> InstructorManagement.listPrograms();
+                case 2 -> {
+                    System.out.print("Enter Program Title: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter Duration: ");
+                    String duration = scanner.nextLine();
+                    System.out.print("Enter Level: ");
+                    String level = scanner.nextLine();
+                    System.out.print("Enter Goals: ");
+                    String goals = scanner.nextLine();
+                    System.out.print("Enter Price: ");
+                    int price = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter Materials (e.g., Videos, Images): ");
+                    String materials = scanner.nextLine();
+                    InstructorManagement.addProgram(title, duration, level, goals, price, materials);
+                }
                 case 3 -> {
+                    System.out.print("Enter Program Title to Update: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter New Duration: ");
+                    String duration = scanner.nextLine();
+                    System.out.print("Enter New Level: ");
+                    String level = scanner.nextLine();
+                    System.out.print("Enter New Goals: ");
+                    String goals = scanner.nextLine();
+                    System.out.print("Enter New Price: ");
+                    int price = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter New Materials: ");
+                    String materials = scanner.nextLine();
+                    InstructorManagement.updateProgram(title, duration, level, goals, price, materials);
+                }
+                case 4 -> {
+                    System.out.print("Enter Program Title to Delete: ");
+                    String title = scanner.nextLine();
+                    InstructorManagement.deleteProgram(title);
+                }
+                case 5 -> {
                     System.out.println("Logging out...");
                     return;
                 }
@@ -104,6 +142,7 @@ public class MainMenu {
             }
         }
     }
+
 
     private static void clientMenu(Scanner scanner) {
         while (true) {
@@ -266,8 +305,14 @@ public class MainMenu {
                     String password = scanner.nextLine();
                     System.out.print("Enter Role (Admin/Instructor/Client): ");
                     String role = scanner.nextLine();
+
                     UserManagement.addUser(username, password, role);
+
+                    Login.addUser(username, password, role);
+
+                    System.out.println("User successfully added and updated in the system.");
                 }
+
                 case 2 -> {
                     System.out.print("Enter Username to Update: ");
                     String username = scanner.nextLine();
