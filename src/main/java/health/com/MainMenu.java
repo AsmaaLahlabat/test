@@ -215,14 +215,15 @@ public class MainMenu {
             scanner.nextLine();
 
             switch (choice) {
-                case 1 -> ClientInteraction.listProgressReports();
+                case 1 -> {
+                    ProgressTracking.listProgressReports();
+                }
                 case 2 -> {
                     System.out.print("Enter Client Name: ");
                     String clientName = scanner.nextLine();
                     System.out.print("Enter Reminder Message: ");
                     String reminder = scanner.nextLine();
-                    ClientInteraction.sendMessage(clientName, reminder);
-                    System.out.println("Reminder sent successfully.");
+                    ProgressTracking.sendMotivationalReminder(clientName, reminder);
                 }
                 case 3 -> {
                     System.out.println("Returning to Instructor Menu...");
@@ -232,6 +233,7 @@ public class MainMenu {
             }
         }
     }
+
     private static void notificationsAndUpdatesFeature(Scanner scanner) {
         while (true) {
             System.out.println("\n==== Notifications and Updates ====");
