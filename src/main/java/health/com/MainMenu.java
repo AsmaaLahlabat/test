@@ -239,25 +239,21 @@ public class MainMenu {
             System.out.println("\n==== Notifications and Updates ====");
             System.out.println("1. Notify Clients About Schedule Changes");
             System.out.println("2. Announce New Programs or Offers");
-            System.out.println("3. Back to Instructor Menu");
+            System.out.println("3. View Sent Notifications");
+            System.out.println("4. Edit a Notification");
+            System.out.println("5. Delete a Notification");
+            System.out.println("6. Back to Instructor Menu");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
-                case 1 -> {
-                    System.out.print("Enter Notification Message: ");
-                    String notification = scanner.nextLine();
-                    ClientInteraction.sendMessage("ALL_CLIENTS", notification);
-                    System.out.println("Notification sent to all clients.");
-                }
-                case 2 -> {
-                    System.out.print("Enter Announcement Message: ");
-                    String announcement = scanner.nextLine();
-                    ClientInteraction.sendMessage("ALL_CLIENTS", announcement);
-                    System.out.println("Announcement sent successfully.");
-                }
-                case 3 -> {
+                case 1 -> notifyClients(scanner);
+                case 2 -> announceProgram(scanner);
+                case 3 -> ClientCommunication.viewNotifications();
+                case 4 -> editNotification(scanner);
+                case 5 -> deleteNotification(scanner);
+                case 6 -> {
                     System.out.println("Returning to Instructor Menu...");
                     return;
                 }
@@ -265,6 +261,51 @@ public class MainMenu {
             }
         }
     }
+
+    private static void notifyClients(Scanner scanner) {
+        System.out.println("Notify Clients:");
+        System.out.println("1. All Clients");
+        System.out.println("2. Clients of a Specific Program");
+        System.out.print("Enter your choice: ");
+        int targetChoice = scanner.nextInt();
+        scanner.nextLine();
+
+        String target = "ALL_CLIENTS";
+        if (targetChoice == 2) {
+            System.out.print("Enter Program Name: ");
+            target = scanner.nextLine();
+        }
+
+        System.out.print("Enter Notification Message: ");
+        String message = scanner.nextLine();
+        ClientCommunication.sendMessage(target, message);
+    }
+
+    private static void announceProgram(Scanner scanner) {
+        System.out.print("Enter Announcement Message: ");
+        String announcement = scanner.nextLine();
+        ClientCommunication.sendMessage("ALL_CLIENTS", announcement);
+    }
+
+    private static void editNotification(Scanner scanner) {
+        ClientCommunication.viewNotifications();
+        System.out.print("Enter Notification Number to Edit: ");
+        int index = scanner.nextInt() - 1;
+        scanner.nextLine();
+
+        System.out.print("Enter the New Message: ");
+        String newMessage = scanner.nextLine();
+        ClientCommunication.editNotification(index, newMessage);
+    }
+
+    private static void deleteNotification(Scanner scanner) {
+        ClientCommunication.viewNotifications();
+        System.out.print("Enter Notification Number to Delete: ");
+        int index = scanner.nextInt() - 1;
+        scanner.nextLine();
+        ClientCommunication.deleteNotification(index);
+    }
+
 
 
 
