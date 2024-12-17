@@ -310,26 +310,47 @@ public class MainMenu {
 
 
     private static void clientMenu(Scanner scanner) {
+        ClientAccount account = new ClientAccount();
         while (true) {
-            System.out.println("\n==== Client Menu ====");
-            System.out.println("1. View Subscriptions");
-            System.out.println("2. Enroll in a Program");
-            System.out.println("3. Logout");
+            System.out.println("\n==== Client Account Management ====");
+            System.out.println("1. Create Profile");
+            System.out.println("2. Update Dietary Preferences");
+            System.out.println("3. View Profile");
+            System.out.println("4. Back to Main Menu");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
-                case 1 -> System.out.println("Viewing subscriptions...");
-                case 2 -> System.out.println("Enrolling in a program...");
-                case 3 -> {
-                    System.out.println("Logging out...");
+                case 1 -> {
+                    System.out.print("Enter Name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Enter Age: ");
+                    int age = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter Fitness Goal: ");
+                    String goal = scanner.nextLine();
+                    System.out.print("Enter Dietary Preferences: ");
+                    String preferences = scanner.nextLine();
+
+                    System.out.println(account.createProfile(name, age, goal, preferences));
+                }
+                case 2 -> {
+                    System.out.print("Enter New Dietary Preferences: ");
+                    String preferences = scanner.nextLine();
+                    System.out.println(account.updateDietaryPreferences(preferences));
+                }
+                case 3 -> System.out.println(account.viewProfile());
+                case 4 -> {
+                    System.out.println("Returning to Main Menu...");
                     return;
                 }
                 default -> System.out.println("Invalid choice. Please try again.");
             }
         }
     }
+
+
 
     private static void programMonitoringFeature(Scanner scanner) {
         while (true) {
