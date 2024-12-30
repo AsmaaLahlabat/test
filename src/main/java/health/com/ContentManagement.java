@@ -15,6 +15,14 @@ public class ContentManagement {
         complaints.add(new Complaint("Missing Diet Plan Info", "Pending"));
     }
 
+    public static List<Article> getPendingArticles() {
+        return pendingArticles;
+    }
+
+    public static List<Complaint> getComplaints() {
+        return complaints;
+    }
+
     public static void listPendingArticles() {
         if (pendingArticles.isEmpty()) {
             System.out.println("No pending articles available.");
@@ -62,5 +70,4 @@ public class ContentManagement {
         }
         return false;
     }
-
 }
