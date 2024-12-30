@@ -11,6 +11,10 @@ public class ProgramMonitoring {
         programs.add(new Program("Build Muscle", 100, 90));
     }
 
+    public static List<Program> getPrograms() {
+        return programs;
+    }
+
     public static void listPrograms() {
         if (programs.isEmpty()) {
             System.out.println("No programs available.");
