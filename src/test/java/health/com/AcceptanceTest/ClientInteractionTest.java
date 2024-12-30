@@ -54,8 +54,8 @@ public class ClientInteractionTest {
 
     @Given("the instructor has sent multiple messages")
     public void theInstructorHasSentMultipleMessages() {
-        ClientInteraction.sendMessage("john_doe", "Keep going!");
-        ClientInteraction.sendMessage("jane_smith", "Great progress!");
+        ClientInteraction.sendMessage("ali", "Keep going!");
+        ClientInteraction.sendMessage("ahmad", "Great progress!");
     }
 
     @When("the instructor views all messages")
@@ -70,8 +70,8 @@ public class ClientInteractionTest {
 
     @Given("the instructor has provided multiple progress reports")
     public void theInstructorHasProvidedMultipleProgressReports() {
-        ClientInteraction.provideProgressReport("john_doe", "Completion: 80%, Attendance: 85%");
-        ClientInteraction.provideProgressReport("jane_smith", "Completion: 60%, Attendance: 70%");
+        ClientInteraction.provideProgressReport("ali", "Completion: 80%, Attendance: 85%");
+        ClientInteraction.provideProgressReport("ahmad", "Completion: 60%, Attendance: 70%");
     }
 
     @When("the instructor views all progress reports")

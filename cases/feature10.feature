@@ -5,7 +5,7 @@ Feature: Client Account Management
 
   Scenario: Successfully create a profile with valid details
     Given the client is on the account management page
-    When the client enters valid personal details "John Doe", "25", "Weight Loss", "No Dietary Restrictions"
+    When the client enters valid personal details "ali", "25", "Weight Loss", "No Dietary Restrictions"
     Then the system should display "Profile created successfully"
 
   Scenario: Attempt to create a profile with invalid age
@@ -20,12 +20,12 @@ Feature: Client Account Management
 
   Scenario: Update dietary preferences in the profile
     Given the client is on the account management page
-    And the client enters valid personal details "John Doe", "30", "Muscle Gain", "Vegetarian"
+    And the client enters valid personal details "ali", "30", "Muscle Gain", "Vegetarian"
     When the client updates dietary preferences to "Vegan"
     Then the system should display "Profile updated successfully"
 
   Scenario: View the profile details
     Given the client is on the account management page
-    And the client enters valid personal details "Jane Doe", "28", "Flexibility", "Gluten Free"
+    And the client enters valid personal details "ahmad", "28", "Flexibility", "Gluten Free"
     When the client views their profile
-    Then the system should display "Name: Jane Doe, Age: 28, Goal: Flexibility, Preferences: Gluten Free"
+    Then the system should display "Name: ahmad, Age: 28, Goal: Flexibility, Preferences: Gluten Free"
