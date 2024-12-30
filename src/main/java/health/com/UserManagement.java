@@ -7,18 +7,25 @@ public class UserManagement {
     private static final List<User> users = new ArrayList<>();
     private static final List<String> pendingRegistrations = new ArrayList<>();
 
-
-
     static {
         users.add(new User("admin", "admin123", "Admin", true));
         users.add(new User("trainer", "trainer123", "Instructor", true));
         users.add(new User("client", "client123", "Client", true));
 
-            UserManagement.requestRegistration("john_doe");
-            UserManagement.requestRegistration("jane_smith");
-        }
+
+        UserManagement.requestRegistration("john_doe");
+        UserManagement.requestRegistration("jane_smith");
+        UserManagement.requestRegistration("new_instructor"); // إضافة المستخدم "new_instructor"
+    }
 
 
+    public static List<User> getUsers() {
+        return users;
+    }
+
+    public static List<String> getPendingRegistrations() {
+        return pendingRegistrations;
+    }
 
     public static void addUser(String username, String password, String role) {
         users.add(new User(username, password, role, true));
@@ -71,7 +78,6 @@ public class UserManagement {
         }
     }
 
-
     public static void monitorActivities() {
         System.out.println("User Activity Statistics:");
         for (User user : users) {
@@ -95,6 +101,4 @@ public class UserManagement {
             }
         }
     }
-
-
 }
