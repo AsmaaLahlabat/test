@@ -38,4 +38,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Required for PR analysis
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Required for SonarCloud authentication
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=RodainaBasem_Software_project
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=fitnessRodainaAsmaa_Software_project
