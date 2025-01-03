@@ -121,7 +121,17 @@ public class MainMenu {
             scanner.nextLine();
 
             switch (choice) {
-                case 1 -> InstructorManagement.listPrograms();
+                case 1 -> {
+                    ProgramMonitoring.listPrograms();
+                    System.out.println("Enter -1 if dont need to see rates else enter number of program:");
+                    String x=scanner.nextLine();
+                    if(x.equals("-1")){
+
+                    }
+                    else {
+                        InstructorManagement.programs.get(Integer.parseInt(x)).printAllRate();
+                    }
+                }
                 case 2 -> {
                     System.out.print("Enter Program Title: ");
                     String title = scanner.nextLine();
@@ -319,6 +329,7 @@ public class MainMenu {
             System.out.println("4. Back to Main Menu");
             System.out.println("5. Browse programs");
             System.out.println("6. Enroll in program");
+            System.out.println("7. Rate a program");
 
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
@@ -387,13 +398,31 @@ public class MainMenu {
 
                     return;
                 }
+                case 7 -> {
+                    displayPrograms();
+                    System.out.println("Chose a program to rate");
+                    int rateChoise=scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.println("enter the rate message: ");
+                    String message3=scanner.nextLine();
+                    System.out.println("here message"+message3);
+                    System.out.println("enter the rate from (1-5): ");
+                    int rate=scanner.nextInt();
+                    Rate r=new Rate(rate,message3);
+                    InstructorManagement.programs.get(rateChoise).rates.add(r);
+
+                    return;
+                }
                 default -> System.out.println("Invalid choice. Please try again.");
             }
         }
     }
 
     private static void displayPrograms() {
-
+    for(int i=0;i<InstructorManagement.programs.size();i++){
+        System.out.println((i+1)+"."+InstructorManagement.programs.get(i).getTitle());
+    }
     }
 
 
@@ -409,9 +438,19 @@ public class MainMenu {
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline character
-
+            System.out.println("osama");
             switch (choice) {
-                case 1 -> ProgramMonitoring.listPrograms();
+                case 1 -> {
+                    ProgramMonitoring.listPrograms();
+                    System.out.println("Enter -1 if dont need to see rates else enter number of program:");
+                String x=scanner.nextLine();
+                if(x.equals("-1")){
+
+                }
+                else {
+                    InstructorManagement.programs.get(Integer.parseInt(x)).printAllRate();
+                }
+                }
                 case 2 -> {
                     Program popular = ProgramMonitoring.getMostPopularProgram();
                     if (popular != null) {

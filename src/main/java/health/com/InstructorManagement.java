@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InstructorManagement {
-    private static final List<instructor_program> programs = new ArrayList<>();
+    public static final List<instructor_program> programs = new ArrayList<>();
 
     static {
         programs.add(new instructor_program("Yoga Basics", "2 Weeks", "Beginner", "Flexibility", 30, "Video"));

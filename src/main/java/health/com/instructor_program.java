@@ -1,5 +1,7 @@
 package health.com;
 
+import java.util.ArrayList;
+
 public class instructor_program {
 
     private String title;
@@ -8,10 +10,20 @@ public class instructor_program {
     private String goals;
     private int price;
     private String materials;
+    public  ArrayList<Rate> rates=new ArrayList<Rate>();
     public String getMaterials() {
         return materials;
     }
-
+    public void printAllRate(){
+        if(rates.size()<=0){
+            System.out.println("No rates found");
+        }
+        else {
+            for (Rate r:rates) {
+                System.out.println(r.toString());
+            }
+        }
+    }
     public int getPrice() {
         return price;
     }
