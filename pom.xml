@@ -12,7 +12,7 @@
         <cucumber.version>7.18.1</cucumber.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <sonar.organization>fitnessRodainaAsmaa</sonar.organization>
+        <sonar.organization>rodainabasem</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <jacoco.version>0.8.12</jacoco.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
