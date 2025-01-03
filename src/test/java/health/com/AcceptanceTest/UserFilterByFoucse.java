@@ -19,8 +19,5 @@ public class UserFilterByFoucse {
         InstructorManagement.SearchByFocusAreaPrograms(focusArea);
     }
 
-    @Then("display all programs that correspond to it")
-    public void displayAllProgramsThatCorrespondToIt() {
-        Assert.assertTrue(true);
-    }
+
 }

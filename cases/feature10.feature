@@ -47,7 +47,7 @@ Feature: Client Account Management
   Scenario: Client filters programs by focus area
     Given the client is on the main menu and wants to filter the programs by focus area
     When the client enters the number of the filter
-    And the client selects the focus area "مثل"
+    And the client selects the focus area "leg"
     Then display all programs that correspond to it
 
 
