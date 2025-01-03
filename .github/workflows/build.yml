@@ -12,12 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for better analysis relevancy
-      - name: Set up JDK 19
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up JDK 20
         uses: actions/setup-java@v3
         with:
-          java-version: '19'  # Use OpenJDK 23
-          distribution: 'temurin'  # Use Eclipse Temurin (Adoptium) for OpenJDK
+          java-version: 20
+          distribution: 'zulu' # Alternative distribution options are available.
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
         with:
