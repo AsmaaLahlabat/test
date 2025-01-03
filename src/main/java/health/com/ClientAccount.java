@@ -7,6 +7,7 @@ public class ClientAccount {
     private String dietaryPreferences;
 
     // إنشاء الملف الشخصي
+    //oo
     public String createProfile(String name, int age, String fitnessGoal, String dietaryPreferences) {
         if (name == null || name.isEmpty() || fitnessGoal.isEmpty() || dietaryPreferences.isEmpty()) {
             return "Error: Missing required fields."; // تحقق من الحقول المفقودة
