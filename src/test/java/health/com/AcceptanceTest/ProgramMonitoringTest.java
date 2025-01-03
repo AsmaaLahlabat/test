@@ -53,7 +53,7 @@ public class ProgramMonitoringTest {
         int enrollmentsInt = Integer.parseInt(enrollments);
         int attendanceInt = Integer.parseInt(attendance);
         int initialSize = ProgramMonitoring.getPrograms().size();
-        ProgramMonitoring.addProgram(title, enrollmentsInt, attendanceInt);
+        ProgramMonitoring.addProgram(title, enrollmentsInt, attendanceInt,"hard","leg");
         assertEquals("Program was not added.", initialSize + 1, ProgramMonitoring.getPrograms().size());
     }
 

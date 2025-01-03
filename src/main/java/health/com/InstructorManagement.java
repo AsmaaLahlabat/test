@@ -45,4 +45,28 @@ public class InstructorManagement {
             }
         }
     }
+    public static void SearchByLevelPrograms(String level) {
+        if (programs.isEmpty()) {
+            System.out.println("No programs available.");
+        } else {
+            System.out.println("Available Programs:");
+            for (instructor_program program : programs) {
+                if(program.getLevel().equalsIgnoreCase(level)) {
+                    System.out.println(program);
+                }
+            }
+        }
+    }
+    public static void SearchByFocusAreaPrograms(String focusArea) {
+        if (programs.isEmpty()) {
+            System.out.println("No programs available.");
+        } else {
+            System.out.println("Available Programs for Focus Area: " + focusArea);
+            for (instructor_program program : programs) {
+                if (program.getGoals().equalsIgnoreCase(focusArea)) {
+                    System.out.println(program);
+                }
+            }
+        }
+    }
 }

@@ -29,3 +29,25 @@ Feature: Client Account Management
     And the client enters valid personal details "ahmad", "28", "Flexibility", "Gluten Free"
     When the client views their profile
     Then the system should display "Name: ahmad, Age: 28, Goal: Flexibility, Preferences: Gluten Free"
+
+
+
+
+
+  Scenario: Client filters programs by difficulty level
+    Given the client is on the main menu and wants to filter the programs by difficulty
+    When the client enters the number of the filter
+    And the client selects the difficulty level "Beginner"
+    Then display all programs that correspond to it
+
+
+
+
+
+  Scenario: Client filters programs by focus area
+    Given the client is on the main menu and wants to filter the programs by focus area
+    When the client enters the number of the filter
+    And the client selects the focus area "مثل"
+    Then display all programs that correspond to it
+
+

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class MainMenu {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+     Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println("\n==== Main Menu ====");
@@ -317,6 +317,9 @@ public class MainMenu {
             System.out.println("2. Update Dietary Preferences");
             System.out.println("3. View Profile");
             System.out.println("4. Back to Main Menu");
+            System.out.println("5. Browse programs");
+            System.out.println("6. Enroll in program");
+
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -345,11 +348,53 @@ public class MainMenu {
                     System.out.println("Returning to Main Menu...");
                     return;
                 }
+                case 5 -> {
+                    System.out.println("...............................");
+                    System.out.println("1.Difficulty level");
+                    System.out.println("2.Focus area");
+                    int choice2 = scanner.nextInt();
+                    scanner.nextLine();
+                    if(choice2==1){
+                        System.out.println("...............................");
+                        System.out.println("1.Hard");
+                        System.out.println("2.Med");
+                        System.out.println("3.Beginner");
+                        int difficultyLevel = scanner.nextInt();
+                        String diff;
+                        if(difficultyLevel==1){
+                            diff = "hard";
+                        }
+                        else if(difficultyLevel==2){
+                            diff = "medium";
+                        }
+                        else {
+                            diff = "Beginner";
+                        }
+                        InstructorManagement.SearchByLevelPrograms(diff);
+                    }
+                    else {
+                        System.out.println("Enter fouces area: ");
+                    String foucse=scanner.nextLine();
+                        InstructorManagement.SearchByFocusAreaPrograms(foucse);
+                    }
+
+                }
+                case 6 -> {
+                  displayPrograms();
+                  //read
+                    //addprogram
+
+
+                    return;
+                }
                 default -> System.out.println("Invalid choice. Please try again.");
             }
         }
     }
 
+    private static void displayPrograms() {
+
+    }
 
 
     private static void programMonitoringFeature(Scanner scanner) {
@@ -384,7 +429,11 @@ public class MainMenu {
                     System.out.print("Enter Attendance: ");
                     int attendance = scanner.nextInt();
                     scanner.nextLine(); // Consume newline character
-                    ProgramMonitoring.addProgram(title, enrollments, attendance);
+                    System.out.print("Enter Difficulty Level: ");
+                    String level = scanner.nextLine();
+                    System.out.print("Enter Foucse Area: ");
+                    String soucse = scanner.nextLine();
+                    ProgramMonitoring.addProgram(title, enrollments, attendance,level,soucse);
                 }
                 case 4 -> {
                     System.out.print("Enter the title of the program to delete: ");
@@ -577,6 +626,8 @@ public class MainMenu {
                 default -> System.out.println("Invalid choice. Please try again.");
             }
         }
+
+
     }
 
 }

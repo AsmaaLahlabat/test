@@ -5,10 +5,31 @@ public class Program {
     private int enrollments;
     private int attendance;
 
-    public Program(String title, int enrollments, int attendance) {
+    public String getDifficultyLevel() {
+        return difficultyLevel;
+    }
+
+    public void setDifficultyLevel(String difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
+    }
+
+    private String difficultyLevel;
+
+    public String getFoucs() {
+        return foucs;
+    }
+
+    public void setFoucs(String foucs) {
+        this.foucs = foucs;
+    }
+
+    private String foucs;
+    public Program(String title, int enrollments, int attendance,String difficultyLevel,String foucs) {
         this.title = title;
         this.enrollments = enrollments;
         this.attendance = attendance;
+        this.difficultyLevel=difficultyLevel;
+        this.foucs=foucs;
     }
 
     public String getTitle() {

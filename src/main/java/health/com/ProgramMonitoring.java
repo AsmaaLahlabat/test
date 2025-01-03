@@ -7,8 +7,8 @@ public class ProgramMonitoring {
     private static final List<Program> programs = new ArrayList<>();
 
     static {
-        programs.add(new Program("Yoga Basics", 50, 40));
-        programs.add(new Program("Build Muscle", 100, 90));
+        programs.add(new Program("Yoga Basics", 50, 40,"hard","leg"));
+        programs.add(new Program("Build Muscle", 100, 90,"easy","neck"));
     }
 
     public static List<Program> getPrograms() {
@@ -29,8 +29,8 @@ public class ProgramMonitoring {
                 .orElse(null);
     }
 
-    public static void addProgram(String title, int enrollments, int attendance) {
-        programs.add(new Program(title, enrollments, attendance));
+    public static void addProgram(String title, int enrollments, int attendance,String level,String foucse) {
+        programs.add(new Program(title, enrollments, attendance,level,foucse));
         System.out.println("Program added successfully!");
     }
 

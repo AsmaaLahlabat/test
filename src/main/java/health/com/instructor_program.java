@@ -8,6 +8,27 @@ public class instructor_program {
     private String goals;
     private int price;
     private String materials;
+    public String getMaterials() {
+        return materials;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String getGoals() {
+        return goals;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+
 
     public instructor_program(String title, String duration, String level, String goals, int price, String materials) {
         this.title = title;
