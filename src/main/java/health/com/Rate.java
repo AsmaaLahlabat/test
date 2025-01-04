@@ -1,34 +1,35 @@
 package health.com;
 
 public class Rate {
+    private int rating;
+    private String comment;
 
-    private int rateValue;
-    private String rateMessage;
-    public Rate(int rate, String message){
-        this.rateMessage=message;
-        this.rateValue=rate;
+    public Rate(int rating, String comment) {
+        this.rating = rating;
+        this.comment = comment;
     }
 
-
-    public int getRateValue() {
-        return rateValue;
+    public int getRating() {
+        return rating;
     }
 
-    public void setRateValue(int rateValue) {
-        this.rateValue = rateValue;
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
-    public String getRateMessage() {
-        return rateMessage;
+    public String getComment() {
+        return comment;
     }
 
-    public void setRateMessage(String rateMessage) {
-        this.rateMessage = rateMessage;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
-//
 
     @Override
     public String toString() {
-        return "Rate [ rateMessage=" + rateMessage + ", rateValue=" + rateValue + "/5 ]";
+        return "Rate{" +
+                "rating=" + rating +
+                ", comment='" + comment + '\'' +
+                '}';
     }
 }

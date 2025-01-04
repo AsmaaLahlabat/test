@@ -10,20 +10,22 @@ public class instructor_program {
     private String goals;
     private int price;
     private String materials;
-    public  ArrayList<Rate> rates=new ArrayList<Rate>();
+    public ArrayList<Rate> rates = new ArrayList<>();
+
     public String getMaterials() {
         return materials;
     }
-    public void printAllRate(){
-        if(rates.size()<=0){
+
+    public void printAllRate() {
+        if (rates.size() <= 0) {
             System.out.println("No rates found");
-        }
-        else {
-            for (Rate r:rates) {
+        } else {
+            for (Rate r : rates) {
                 System.out.println(r.toString());
             }
         }
     }
+
     public int getPrice() {
         return price;
     }
@@ -40,13 +42,13 @@ public class instructor_program {
         return duration;
     }
 
-
-
     public instructor_program(String title, String duration, String level, String goals, int price, String materials) {
         this.title = title;
         this.duration = duration;
         this.level = level;
         this.goals = goals;
+        this.price = price;
+        this.materials = materials;
     }
 
     public String getTitle() {
