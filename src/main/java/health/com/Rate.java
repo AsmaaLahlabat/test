@@ -25,7 +25,7 @@ public class Rate {
     public void setRateMessage(String rateMessage) {
         this.rateMessage = rateMessage;
     }
-
+//
 
     @Override
     public String toString() {
