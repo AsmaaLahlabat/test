@@ -3,7 +3,8 @@ package health.com;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ClientInteraction {
+public class
+ClientInteraction {
     private static final Map<String, String> clientMessages = new HashMap<>();
     private static final Map<String, String> progressReports = new HashMap<>();
 

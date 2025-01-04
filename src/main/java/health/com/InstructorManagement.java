@@ -8,7 +8,6 @@ public class InstructorManagement {
 
     static {
         programs.add(new instructor_program("Yoga Basics", "2 Weeks", "Beginner", "Flexibility", 30, "Video"));
-        programs.add(new instructor_program("HIIT Workout", "4 Weeks", "Advanced", "Endurance", 50, "Video Tutorials"));
     }
 
     public static void addProgram(String title, String duration, String level, String goals, int price, String materials) {
@@ -46,20 +45,18 @@ public class InstructorManagement {
             }
         }
     }
-
     public static void SearchByLevelPrograms(String level) {
         if (programs.isEmpty()) {
             System.out.println("No programs available.");
         } else {
             System.out.println("Available Programs:");
             for (instructor_program program : programs) {
-                if (program.getLevel().equalsIgnoreCase(level)) {
+                if(program.getLevel().equalsIgnoreCase(level)) {
                     System.out.println(program);
                 }
             }
         }
     }
-
     public static void SearchByFocusAreaPrograms(String focusArea) {
         if (programs.isEmpty()) {
             System.out.println("No programs available.");
