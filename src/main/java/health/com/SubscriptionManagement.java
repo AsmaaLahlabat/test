@@ -7,13 +7,21 @@ public class SubscriptionManagement {
     private static final List<SubscriptionPlan> plans = new ArrayList<>();
 
     static {
-        plans.add(new SubscriptionPlan("Basic", 50));
-        plans.add(new SubscriptionPlan("Premium", 100));
+        resetPlans();
+    }//
+
+    public static List<SubscriptionPlan> getPlans() {
+        return plans;
     }
 
     public static void addSubscriptionPlan(String name, int price) {
-        plans.add(new SubscriptionPlan(name, price));
-        System.out.println("Subscription plan added: " + name + " with price " + price);
+        boolean exists = plans.stream().anyMatch(plan -> plan.getName().equalsIgnoreCase(name));
+        if (!exists) {
+            plans.add(new SubscriptionPlan(name, price));
+            System.out.println("Subscription plan added: " + name + " with price " + price);
+        } else {
+            System.out.println("Subscription plan already exists: " + name);
+        }
     }
 
     public static boolean updateSubscriptionPlan(String name, int newPrice) {
@@ -29,7 +37,14 @@ public class SubscriptionManagement {
     }
 
     public static boolean deleteSubscriptionPlan(String name) {
-        return plans.removeIf(plan -> plan.getName().equalsIgnoreCase(name));
+        System.out.println("Attempting to delete plan: " + name);
+        boolean isDeleted = plans.removeIf(plan -> plan.getName().equalsIgnoreCase(name));
+        if (!isDeleted) {
+            System.out.println("The plan does not exist: " + name);
+        } else {
+            System.out.println("Plan deleted successfully: " + name);
+        }
+        return isDeleted;
     }
 
     public static void listPlans() {
@@ -42,5 +57,10 @@ public class SubscriptionManagement {
             }
         }
     }
-}
 
+    public static void resetPlans() {
+        plans.clear();
+        plans.add(new SubscriptionPlan("Basic", 50));
+        plans.add(new SubscriptionPlan("Premium", 100));
+    }
+}
