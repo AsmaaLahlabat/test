@@ -8,6 +8,7 @@ public class ContentManagement {
     private static final List<Article> pendingArticles = new ArrayList<>();
     private static final List<Complaint> complaints = new ArrayList<>();
 
+
     static {
         pendingArticles.add(new Article("Healthy Eating Tips", "Pending"));
         pendingArticles.add(new Article("Quick Fix Diet", "Pending"));

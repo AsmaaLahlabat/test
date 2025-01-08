@@ -47,7 +47,7 @@ public class RateSteps {
 
     @When("I update the rate message to {string}")
     public void updateRateMessage(String newRateMessage) {
-        rate.setRating(Integer.parseInt(newRateMessage));
+        rate.setComment(newRateMessage);
     }
 
     @When("I call the toString method")

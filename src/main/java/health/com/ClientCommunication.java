@@ -6,6 +6,7 @@ import java.util.List;
 public class ClientCommunication {
     private static final List<Notification> notifications = new ArrayList<>();
 
+
     public static void sendMessage(String target, String message) {
         notifications.add(new Notification(message, target));
         System.out.println("Message sent to: " + (target.equalsIgnoreCase("ALL_CLIENTS") ? "All Clients" : "Clients of " + target));

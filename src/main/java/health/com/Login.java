@@ -10,7 +10,7 @@ public class Login {
         users.add(new User("admin", "admin123", "Admin", true));
         users.add(new User("trainer", "trainer123", "Instructor", true));
         users.add(new User("client", "client123", "Client", true));
-
+        addUser("client2", "1234","Client", true);
     }
 
     public static User login(String username, String password) {

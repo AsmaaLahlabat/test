@@ -33,6 +33,8 @@ public class UserManagementTest {
 
     @Then("the user details should be updated successfully")
     public void theUserDetailsShouldBeUpdatedSuccessfully() {
+        UserManagement.listPendingRegistrations();
+        UserManagement.showPendingRegistrations();
         System.out.println("User updated successfully!");
     }
 
